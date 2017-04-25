@@ -205,7 +205,7 @@ h1 a {
 .controlPanel select {
 	background-color: #dddddd;
 	color: #000000;
-	
+
 	font-family: "Arial", sans-serif;
 	font-size: 16px;
 }
@@ -258,43 +258,5 @@ h1 a {
 	position: absolute;
 	top: 290px;
 	color: #eea;
-}
-
-/* ---- Bottom ---- */
-
-#bottomContent {
-	position: relative;
-	width: 900px;
-	margin: 40px auto 0 auto;
-}
-
-/* ---- Footer ---- */
-
-#footerContainer {
-	position: relative;
-	clear: both;
-	margin-top: 30px;
-	border-top-style: solid;
-	border-top-colour: black;
-	border-top-width: 1px;
-	background-color: #222222;
-	color: #aaaaaa;
-}
-
-#footer {
-	position: relative;
-
-	width: 900px;
-	margin: 0 auto 0 auto;
-	
-	clear: both;
-	padding: 25px 0 25px 0;
-}
-
-#footer a {
-	color: #3be;
-}
-#footer a:hover {
-	color: #6df;
 }
 

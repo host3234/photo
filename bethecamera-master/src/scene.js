@@ -13,139 +13,140 @@ define(
 			urlUtils
 		) {
 	var scenes = [
+			// {
+			// 	name : "Tree Bear",
+			// 	layers : [
+			// 		{
+			// 			name : "background",
+			// 			source : "content/treeDog/tree-dog-24-back-540.jpg",
+			// 			focalDistance : 15 // in meters
+			// 		},
+			// 		{
+			// 			name : "foreground",
+			// 			source : "content/treeDog/tree-dog-24-fore-540.png",
+			// 			focalDistance : 1.3
+			// 		}
+			// 	],
+			// 	hdrToLdrMultiplier : 1.8,
+			// 	sceneEV : 9,
+			// 	EVOffset : 3,
+			// 	width : 540,
+			// 	height : 360,
+			// 	focalLength : 24,
+			// 	location : "Retiro Park, Madrid",
+			// 	description : "Poor little bear."
+			// },
+			// {
+			// 	name : "Tree Bear",
+			// 	layers : [
+			// 		{
+			// 			name : "background",
+			// 			source : "content/treeDog/tree-dog-50-back-540.jpg",
+			// 			focalDistance : 15 // in meters
+			// 		},
+			// 		{
+			// 			name : "foreground",
+			// 			source : "content/treeDog/tree-dog-50-fore-540.png",
+			// 			focalDistance : 1.3
+			// 		}
+			// 	],
+			// 	hdrToLdrMultiplier : 1.8,
+			// 	sceneEV : 9,
+			// 	EVOffset : 3,
+			// 	width : 540,
+			// 	height : 360,
+			// 	focalLength : 50,
+			// 	location : "Retiro Park, Madrid",
+			// 	description : "Gdy zmienaimy ogniskową przy takiej samej przesłonie, tło się rozmywa."
+			// },
+			// {
+			// 	name : "Tree Bear",
+			// 	layers : [
+			// 		{
+			// 			name : "background",
+			// 			source : "content/treeDog/tree-dog-80-back-540.jpg",
+			// 			focalDistance : 15 // in meters
+			// 		},
+			// 		{
+			// 			name : "foreground",
+			// 			source : "content/treeDog/tree-dog-80-fore-540.png",
+			// 			focalDistance : 1.3
+			// 		}
+			// 	],
+			// 	hdrToLdrMultiplier : 1.2,
+			// 	sceneEV : 9,
+			// 	EVOffset : 0,
+			// 	width : 540,
+			// 	height : 360,
+			// 	focalLength : 80,
+			// 	location : "Retiro Park, Madrid",
+			// 	description : "At 80mm we're in the telephoto range, and at a distance of only 1.3m from our subject we can acheive a very shallow depth of field effect by using a large aperture. Remember a larger aperture means lower f-stop.",
+			// 	notes: "With a very large aperture the tree in the foreground should start to become blurred, even when the dog is in focus, this shows a weakness of the simulation method, which simplifies the scene into only two layers"
+			// },
+			// {
+			// 	name : "Church",
+			// 	layers : [
+			// 		{
+			// 			name : "",
+			// 			source : "content/cathedral/cathedral-540.jpg",
+			// 			focalDistance : 40 // in meters
+			// 		}
+			// 	],
+
+			// 	hdrToLdrMultiplier : 1.4,
+			// 	sceneEV : 11,
+			// 	EVOffset : 0,
+			// 	width : 540,
+			// 	height : 360,
+			// 	focalLength : 35,
+			// 	description : "Taken while the sun was setting. At this focal range and distance the whole image stays in focus, even when using a large aperture."
+			// },
 			{
-				name : "Tree Bear",
+				name : "Drift, rozmycie tła",
 				layers : [
 					{
-						name : "background",
-						source : "content/treeDog/tree-dog-24-back-540.jpg",
-						focalDistance : 15 // in meters
+						name : "tła",
+						source : "content/trela/background.jpg",
+						focalDistance : 190,
+						horizontalMotionBlur : 20
 					},
 					{
-						name : "foreground",
-						source : "content/treeDog/tree-dog-24-fore-540.png",
-						focalDistance : 1.3
+						name : "samochodu",
+						source : "content/trela/foreground.png",
+						focalDistance : 30,
 					}
 				],
-				hdrToLdrMultiplier : 1.8,
-				sceneEV : 9,
-				EVOffset : 3,
-				width : 540,
-				height : 360,
-				focalLength : 24,
-				location : "Retiro Park, Madrid",
-				description : "Poor little bear."
-			},
-			{
-				name : "Tree Bear",
-				layers : [
-					{
-						name : "background",
-						source : "content/treeDog/tree-dog-50-back-540.jpg",
-						focalDistance : 15 // in meters
-					},
-					{
-						name : "foreground",
-						source : "content/treeDog/tree-dog-50-fore-540.png",
-						focalDistance : 1.3
-					}
-				],
-				hdrToLdrMultiplier : 1.8,
-				sceneEV : 9,
-				EVOffset : 3,
-				width : 540,
-				height : 360,
-				focalLength : 50,
-				location : "Retiro Park, Madrid",
-				description : "If we zoom in while keeping the aperture constant, the background becomes more blurred."
-			},
-			{
-				name : "Tree Bear",
-				layers : [
-					{
-						name : "background",
-						source : "content/treeDog/tree-dog-80-back-540.jpg",
-						focalDistance : 15 // in meters
-					},
-					{
-						name : "foreground",
-						source : "content/treeDog/tree-dog-80-fore-540.png",
-						focalDistance : 1.3
-					}
-				],
-				hdrToLdrMultiplier : 1.2,
-				sceneEV : 9,
-				EVOffset : 0,
-				width : 540,
-				height : 360,
-				focalLength : 80,
-				location : "Retiro Park, Madrid",
-				description : "At 80mm we're in the telephoto range, and at a distance of only 1.3m from our subject we can acheive a very shallow depth of field effect by using a large aperture. Remember a larger aperture means lower f-stop.",
-				notes: "With a very large aperture the tree in the foreground should start to become blurred, even when the dog is in focus, this shows a weakness of the simulation method, which simplifies the scene into only two layers"
-			},
-			{
-				name : "Church",
-				layers : [
-					{
-						name : "",
-						source : "content/cathedral/cathedral-540.jpg",
-						focalDistance : 40 // in meters
-					}
-				],
-				
-				hdrToLdrMultiplier : 1.4,
-				sceneEV : 11,
-				EVOffset : 0,
-				width : 540,
-				height : 360,
-				focalLength : 35,
-				description : "Taken while the sun was setting. At this focal range and distance the whole image stays in focus, even when using a large aperture."
-			},
-			{
-				name : "Lounge",
-				layers : [
-					{
-						name : "background",
-						source : "content/loungeScene/lounge-hdr-background.jpg",
-						focalDistance : 8
-					},
-					{
-						name : "foreground",
-						source : "content/loungeScene/lounge-hdr-foreground.png",
-						focalDistance : 1.5,
-					}
-				],
-				
-				hdrToLdrMultiplier : 2,
+
+				hdrToLdrMultiplier : 1.5,
 				sceneEV : 3,
 				EVOffset : 2.3,
 				width : 540,
-				height : 360,
-				focalLength : 50,
-				description: "This is a low-light scene. The scene is static, so you can improve the quality by using a slower shutter speed."
+				height : 304,
+				focalLength : 200,
+				description: "W tej scenie zakładamy że fotograf podążął za autem i rozmyte jest tło."
 			},
 			{
-				name : "Lounge, moving dog",
+				name : "Drift, rozmycie auta",
 				layers : [
 					{
-						name : "background",
-						source : "content/loungeScene/lounge-hdr-background.jpg",
-						focalDistance : 8
+						name : "tła",
+						source : "content/trela/background.jpg",
+						focalDistance : 190
 					},
 					{
-						name : "foreground",
-						source : "content/loungeScene/lounge-hdr-foreground.png",
-						focalDistance : 1.5,
+						name : "samochodu",
+						source : "content/trela/foreground.png",
+						focalDistance : 30,
 						horizontalMotionBlur : 8 // in pixels / second
 					}
 				],
-				hdrToLdrMultiplier : 2,
+				hdrToLdrMultiplier : 1.5,
 				sceneEV : 3,
 				EVOffset : 2.3,
 				width : 540,
-				height : 360,
-				focalLength : 50,
-				description : "This is a low-light scene and the dog is moving on a conveyor belt just out of shot, so the shutter speed needs to be kept reasonably fast to avoid motion blur. This makes it impossible to get a sharp, low noise image with a typical compact camera and shows the advantage of having a camera with a large aperture."
+				height : 304,
+				focalLength : 200,
+				description : "Jest to typowa scena z wyścigów, należy użyć dużej przsłony aby uniknąć rozmycia auta"
 			}
 		],
 		sceneDefinition,
@@ -162,7 +163,7 @@ define(
 		drawSceneVariables = [],
 		cameraSettings,
 		initialising = true;
-	
+
 	var loadImage = function (sourceFile) {
 		console.log("loading image " + sourceFile);
 		leftToLoad++;
@@ -234,10 +235,10 @@ define(
 			cacheSize++;
 			console.log("cache miss, cache size: " + cacheSize);
 		}
-		
+
 		return defocusedContextsCache[cacheKey];
 	};
-	
+
 	var focusChanged = function (cameraSettings) {
 		console.time("focus");
 
@@ -249,16 +250,16 @@ define(
 				defocusedBuffer,
 				focus = sceneDefinition.layers[
 					Math.min(cameraSettings.focusLayer, sceneDefinition.layers.length - 1)].focalDistance;
-			
+
 			defocusBlurRadius = Math.abs(
-				1.0 / focus - 1.0 / sceneDefinition.layers[i].focalDistance) / 
+				1.0 / focus - 1.0 / sceneDefinition.layers[i].focalDistance) /
 				(cameraSettings.aperture * cameraSettings.cameraSpec.cropFactor) *
 				sceneDefinition.focalLength * sceneDefinition.focalLength / 160;
 
 			horizontalMotionBlur = sceneDefinition.layers[i].horizontalMotionBlur || 0;
 
 			console.log("hblur for layer " + i + " = " + horizontalMotionBlur);
-			
+
 			defocusedBuffer = getDefocusedLayer(i, defocusBlurRadius,
 				horizontalMotionBlur * cameraSettings.shutter);
 			bufferContext.drawImage(defocusedBuffer, 0, 0);
@@ -277,7 +278,7 @@ define(
 
 	var drawScene = function (variablesChanged) {
 		drawSceneVariables = drawSceneVariables.concat(variablesChanged);
-		
+
 		if (leftToLoad > 0) {
 			console.log("drawScene cancelled, still loading");
 			return;
@@ -299,9 +300,7 @@ define(
 					sceneDefinition.focalLength / cameraSettings.cameraSpec.cropFactor)) {
 				$('#simulationStatus').text("");
 			} else {
-				$('#simulationStatus').text("Note: the selected camera/lens combination " +
-						"doesn't support this photo's focal length of " +
-						sceneDefinition.focalLength + "mm (full frame equivalent).");
+				$('#simulationStatus').text('');
 			}
 
 			cameraControls.setup(cameraSettings, drawScene,
@@ -313,12 +312,12 @@ define(
 		cameraSettings.calculate(sceneDefinition.sceneEV,
 				sceneDefinition.focalLength / cameraSettings.cameraSpec.cropFactor);
 		cameraControls.updateDisplay();
-		
+
 		if (oldAperture !== cameraSettings.aperture) {
 			variablesChanged.push('aperture');
 		}
 
-		console.log("f" + cameraSettings.aperture + "  " + cameraSettings.focus + "m  " + 
+		console.log("f" + cameraSettings.aperture + "  " + cameraSettings.focus + "m  " +
 			Math.floor(cameraSettings.ISO) + "ISO   " + cameraSettings.shutter + "s  " +
 			cameraSettings.cameraSpec.cropFactor + "x");
 
@@ -360,7 +359,7 @@ define(
 		var defaultScene = 1;
 
 		loadScene(defaultScene);
-		
+
 		sceneSelectorElement.html(mustache.toHtml('sceneSelector', {scenes: scenes}));
 		sceneSelectorElement.change(function () {
 			var index = sceneSelectorElement.find('option').index(sceneSelectorElement.find('option:selected'));

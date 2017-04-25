@@ -57,7 +57,7 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 		console.log("max ap at " + focalLength + "mm = " + result);
 		return exposureFunctions.roundAperture(result);
 	};
-	
+
 	// TODO: move to cameraSpec.js ??
 	// update camera settings based on the given scene exposure
 	CameraSettings.prototype.calculate = function (sceneEV, focalLength) {
@@ -111,7 +111,7 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 			// - shutter speed at target or lower/faster
 			// - lowest ISO
 			// - ISO lower than target
-			
+
 			var targetShutter = Math.min(Math.max(1 / 128, minShutter), maxShutter);
 			var targetSlowShutter = Math.min(Math.max(0.5, minShutter), maxShutter);
 			var targetISO = Math.min(Math.max(400, minISO), maxISO);
@@ -129,7 +129,7 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 
 			if (targetEV <= EVAtTargetSlowShutter) {
 				// keep aperture wide and ISO max
-				
+
 				this.ISO = maxISO;
 				this.aperture = maxAperture;
 				this.shutter = maxShutter / Math.pow(2, targetEV - minPossibleEV);
@@ -139,7 +139,7 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 
 				// use ISO between max and target
 				// use shutter between targetSlow and target
-				
+
 				fraction = (EVAtTargetISO - targetEV) / (EVAtTargetISO - EVAtTargetSlowShutter);
 
 				console.log("fraction = " + fraction);
@@ -194,9 +194,9 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 		}
 		console.log("EV: " + this.EV() + " / " + targetEV);
 		if (exposureFunctions.roundEV(this.EV()) > exposureFunctions.roundEV(targetEV)) {
-			this.error = "Scene too dark";
+			this.error = "Scena za ciemna";
 		} else if (exposureFunctions.roundEV(this.EV()) < exposureFunctions.roundEV(targetEV)) {
-			this.error = "Scene too light";
+			this.error = "Scena za jasna";
 		}
 	};
 
