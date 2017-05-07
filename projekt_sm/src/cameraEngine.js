@@ -1,11 +1,9 @@
 "use strict";
 
 define([], function () {
-	var fastBlur = function (input, horizontalRadius, verticalRadius /* optional */) {
+	var fastBlur = function (input, horizontalRadius, verticalRadius) {
 		var toHdr = new Array(256);
 
-		// TODO: rename, not really contrast
-		// lower number makes more pronounced bokeh
 		var contrast = 32;
 
 		for (var i=0; i<256; i++) {
@@ -55,7 +53,6 @@ define([], function () {
 			for (var y=0; y<height; y++) {
 				while ((boxBottom < y + radius + 1) && (boxBottom < height)) {
 					if (boxBottom > -1) {
-						// add the remaining part of the fraction
 						alpha = inputImage.data[(x + width*boxBottom)*4 + 3] * remainingFraction;
 
 						if (alpha > 0) {
@@ -68,7 +65,6 @@ define([], function () {
 					boxBottom++;
 
 					if (boxBottom < height) {
-						// add the fractional part
 						bottomFraction = fraction;
 						alpha = inputImage.data[(x + width*boxBottom)*4 + 3] * fraction;
 						if (alpha > 0) {
@@ -136,7 +132,6 @@ define([], function () {
 		fraction = Math.round(16 * (horizontalRadius - radius));
 		remainingFraction = 16 - fraction;
 				
-		// horizontal blur
 		for (var y=0; y<height; y++)
 		{
 			var boxLeft = 0;
@@ -153,7 +148,6 @@ define([], function () {
 				while ((boxRight < x + radius + 1) && (boxRight < width))
 				{
 					if (boxRight > -1) {
-						// add the remaining part of the fraction
 						alpha = vBlurImage.data[(boxRight + width * y) * 4 + 3] * remainingFraction;
 
 						if (alpha > 0) {
@@ -166,7 +160,6 @@ define([], function () {
 					boxRight++;
 
 					if (boxRight < width) {
-						// add the fractional part
 						rightFraction = fraction;
 						alpha = vBlurImage.data[(boxRight + width * y) * 4 + 3] * fraction;
 						if (alpha > 0) {
@@ -224,13 +217,10 @@ define([], function () {
 		outputContext.putImageData(outputImage, 0, 0);
 		return output;
 	};
-
-	// transforms from low-contrast HDR to high-contrast image
-	// (assumes hdrImageData and outputContext are the same dimensions)
 	var drawPhoto = function(hdrImageData, outputContext, EV, noise, multiplier) {
 		var outputImageData = outputContext.getImageData(0,0,hdrImageData.width,hdrImageData.height);
 
-		var dynamicRange = 9; // num stops assumed to be in output image
+		var dynamicRange = 9; 
 		var logGain = - 128 * (multiplier - 1) + 256 * EV / dynamicRange;
 
 		var limit = false;
@@ -244,7 +234,6 @@ define([], function () {
 			r, g, b;
 
 		console.time("loop");
-		// Loop through data.
 		for (var i = 0; i < hdrImageData.width * hdrImageData.height * 4; i+=4)
 		{
 			r = multiplier * hdrImageData.data[i];
@@ -255,8 +244,6 @@ define([], function () {
 			g -= noise * (Math.random() - 0.5);
 			b -= noise * (Math.random() - 0.5);
 
-			// Note: using Math.min and Math.max here took about 80ms
-			// extra per 600x400 image 
 			if (limit) {
 				outputImageData.data[i  ] = Math.max(0, Math.min(255, r + logGain));
 				outputImageData.data[i+1] = Math.max(0, Math.min(255, g + logGain));

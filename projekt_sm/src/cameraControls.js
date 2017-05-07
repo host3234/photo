@@ -33,7 +33,6 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 		$('#exposureAmount').val(EVAmount + Math.abs(Math.round(100 *
 				exposureFunctions.roundEV(cameraSettings.EVComp)) / 100));
 
-		// TODO: update slider positions
 		ISOSlider.slider({
 			value : ISOValues.indexOf(exposureFunctions.roundISO(cameraSettings.ISO))
 		});
@@ -109,7 +108,6 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 		console.log("Mode : " + mode);
 
 		cameraSettings.mode = mode;
-		//cameraSettings.calculate(5);
 
 		if (!initialising) {
 			settingsChanged(["aperture", "ISO", "shutter"]);
@@ -244,7 +242,6 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 	};
 
 	var restrictSettings = function () {
-		// restrict camera settings
 		var oldISO = cameraSettings.ISO;
 		var oldAperture = cameraSettings.aperture;
 		var oldShutter = cameraSettings.shutter;

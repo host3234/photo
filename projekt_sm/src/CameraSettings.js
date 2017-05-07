@@ -58,8 +58,6 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 		return exposureFunctions.roundAperture(result);
 	};
 
-	// TODO: move to cameraSpec.js ??
-	// update camera settings based on the given scene exposure
 	CameraSettings.prototype.calculate = function (sceneEV, focalLength) {
 		var minISO = this.cameraSpec.minISO || 100,
 			maxISO = this.cameraSpec.maxISO || 3200,
@@ -73,21 +71,17 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 
 		switch (this.mode) {
 		case "A":
-			// allow full range of values, no extra constraints
 			break;
 		case "Av":
 			console.log("Av calculate");
-			// Constrain the aperture
 			minAperture = this.aperture;
 			maxAperture = this.aperture;
 			break;
 		case "Tv":
-			// Constrain the shutter
 			minShutter = this.shutter;
 			maxShutter = this.shutter;
 			break;
 		case "M":
-			// just update the EVComp
 			this.EVComp = sceneEV - this.EV();
 			return;
 		}
@@ -96,21 +90,14 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 		var minPossibleEV = exposureFunctions.EV(maxISO, maxAperture, maxShutter);
 
 		if (targetEV <= minPossibleEV) {
-			// Dark scene - use max possible values
 			this.ISO = maxISO;
 			this.aperture = maxAperture;
 			this.shutter = maxShutter;
 		} else if (targetEV >= maxPossibleEV) {
-			// Bright scene - use min possible values
 			this.ISO = minISO;
 			this.aperture = minAperture;
 			this.shutter = minShutter;
 		} else {
-			// The general case, need to find an exact match
-			// Priorities in order:
-			// - shutter speed at target or lower/faster
-			// - lowest ISO
-			// - ISO lower than target
 
 			var targetShutter = Math.min(Math.max(1 / 128, minShutter), maxShutter);
 			var targetSlowShutter = Math.min(Math.max(0.5, minShutter), maxShutter);
@@ -128,18 +115,12 @@ define(['src/exposureFunctions'], function (exposureFunctions) {
 			var fraction;
 
 			if (targetEV <= EVAtTargetSlowShutter) {
-				// keep aperture wide and ISO max
 
 				this.ISO = maxISO;
 				this.aperture = maxAperture;
 				this.shutter = maxShutter / Math.pow(2, targetEV - minPossibleEV);
 			} else if (targetEV <= EVAtTargetISO) {
-				// keep aperture wide
 				this.aperture = maxAperture;
-
-				// use ISO between max and target
-				// use shutter between targetSlow and target
-
 				fraction = (EVAtTargetISO - targetEV) / (EVAtTargetISO - EVAtTargetSlowShutter);
 
 				console.log("fraction = " + fraction);

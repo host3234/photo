@@ -13,94 +13,6 @@ define(
 			urlUtils
 		) {
 	var scenes = [
-			// {
-			// 	name : "Tree Bear",
-			// 	layers : [
-			// 		{
-			// 			name : "background",
-			// 			source : "content/treeDog/tree-dog-24-back-540.jpg",
-			// 			focalDistance : 15 // in meters
-			// 		},
-			// 		{
-			// 			name : "foreground",
-			// 			source : "content/treeDog/tree-dog-24-fore-540.png",
-			// 			focalDistance : 1.3
-			// 		}
-			// 	],
-			// 	hdrToLdrMultiplier : 1.8,
-			// 	sceneEV : 9,
-			// 	EVOffset : 3,
-			// 	width : 540,
-			// 	height : 360,
-			// 	focalLength : 24,
-			// 	location : "Retiro Park, Madrid",
-			// 	description : "Poor little bear."
-			// },
-			// {
-			// 	name : "Tree Bear",
-			// 	layers : [
-			// 		{
-			// 			name : "background",
-			// 			source : "content/treeDog/tree-dog-50-back-540.jpg",
-			// 			focalDistance : 15 // in meters
-			// 		},
-			// 		{
-			// 			name : "foreground",
-			// 			source : "content/treeDog/tree-dog-50-fore-540.png",
-			// 			focalDistance : 1.3
-			// 		}
-			// 	],
-			// 	hdrToLdrMultiplier : 1.8,
-			// 	sceneEV : 9,
-			// 	EVOffset : 3,
-			// 	width : 540,
-			// 	height : 360,
-			// 	focalLength : 50,
-			// 	location : "Retiro Park, Madrid",
-			// 	description : "Gdy zmienaimy ogniskową przy takiej samej przesłonie, tło się rozmywa."
-			// },
-			// {
-			// 	name : "Tree Bear",
-			// 	layers : [
-			// 		{
-			// 			name : "background",
-			// 			source : "content/treeDog/tree-dog-80-back-540.jpg",
-			// 			focalDistance : 15 // in meters
-			// 		},
-			// 		{
-			// 			name : "foreground",
-			// 			source : "content/treeDog/tree-dog-80-fore-540.png",
-			// 			focalDistance : 1.3
-			// 		}
-			// 	],
-			// 	hdrToLdrMultiplier : 1.2,
-			// 	sceneEV : 9,
-			// 	EVOffset : 0,
-			// 	width : 540,
-			// 	height : 360,
-			// 	focalLength : 80,
-			// 	location : "Retiro Park, Madrid",
-			// 	description : "At 80mm we're in the telephoto range, and at a distance of only 1.3m from our subject we can acheive a very shallow depth of field effect by using a large aperture. Remember a larger aperture means lower f-stop.",
-			// 	notes: "With a very large aperture the tree in the foreground should start to become blurred, even when the dog is in focus, this shows a weakness of the simulation method, which simplifies the scene into only two layers"
-			// },
-			// {
-			// 	name : "Church",
-			// 	layers : [
-			// 		{
-			// 			name : "",
-			// 			source : "content/cathedral/cathedral-540.jpg",
-			// 			focalDistance : 40 // in meters
-			// 		}
-			// 	],
-
-			// 	hdrToLdrMultiplier : 1.4,
-			// 	sceneEV : 11,
-			// 	EVOffset : 0,
-			// 	width : 540,
-			// 	height : 360,
-			// 	focalLength : 35,
-			// 	description : "Taken while the sun was setting. At this focal range and distance the whole image stays in focus, even when using a large aperture."
-			// },
 			{
 				name : "Drift, rozmycie tła",
 				layers : [
@@ -137,7 +49,7 @@ define(
 						name : "samochodu",
 						source : "content/trela/foreground.png",
 						focalDistance : 30,
-						horizontalMotionBlur : 8 // in pixels / second
+						horizontalMotionBlur : 8 
 					}
 				],
 				hdrToLdrMultiplier : 1.5,
@@ -157,7 +69,7 @@ define(
 		layerContexts,
 		hdrBuffer,
 		mainContext,
-		defocusedContextsCache, // defocused buffers stored in cache
+		defocusedContextsCache, 
 		drawSceneTimer,
 		drawSceneTime = 100,
 		drawSceneVariables = [],
@@ -190,11 +102,9 @@ define(
 			addLayer(layer, i);
 		});
 
-		// create HDR image buffer
 		hdrBuffer.width = sceneDefinition.width;
 		hdrBuffer.height = sceneDefinition.height;
 
-		// set focus to last layer
 		cameraSettings.focusLayer = sceneDefinition.layers.length - 1;
 
 		if (sceneDefinition.layers.length > 1) {
@@ -215,7 +125,6 @@ define(
 		defocusBlurRadius = Math.abs(defocusBlurRadius);
 
 		var round;
-		// limit radius values for effective caching
 		if (defocusBlurRadius < 1) {
 			round = 0.25;
 		} else if (defocusBlurRadius < 6) {

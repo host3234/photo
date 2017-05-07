@@ -32,7 +32,6 @@ var Mustache;
   exports.Context = Context;
   exports.Renderer = Renderer;
 
-  // This is here for backwards compatibility with 0.4.x.
   exports.to_html = function (template, view, partials, send) {
     var result = render(template, view, partials);
 
@@ -50,8 +49,6 @@ var Mustache;
   var curlyRe = /\s*\}/;
   var tagRe = /#|\^|\/|>|\{|&|=|!/;
 
-  // Workaround for https://issues.apache.org/jira/browse/COUCHDB-577
-  // See https://github.com/janl/mustache.js/issues/189
   function testRe(re, string) {
     return RegExp.prototype.test.call(re, string);
   }
@@ -64,7 +61,6 @@ var Mustache;
     return Object.prototype.toString.call(obj) === "[object Array]";
   };
 
-  // OSWASP Guidelines: escape all non alphanumeric characters in ASCII space.
   var jsCharsRe = /[\x00-\x2F\x3A-\x40\x5B-\x60\x7B-\xFF\u2028\u2029]/gm;
 
   function quote(text) {
@@ -268,7 +264,6 @@ var Mustache;
 
       return value ? callback(context.push(value), this) : "";
     case "function":
-      // TODO: The text should be passed to the callback plain, not rendered.
       var sectionText = callback(context, this),
           self = this;
 
@@ -361,17 +356,12 @@ var Mustache;
       }
     }
 
-    // Convert to a string body.
     body = "return " + body.join(" + ") + ";";
-
-    // Good for debugging.
-    // console.log(body);
 
     if (returnBody) {
       return body;
     }
 
-    // For great evil!
     return new Function("c, r", body);
   }
 
@@ -430,7 +420,6 @@ var Mustache;
       }
     }
 
-    // Make sure there were no open sections when we're done.
     section = sections.pop();
 
     if (section) {
@@ -440,10 +429,6 @@ var Mustache;
     return tree;
   }
 
-  /**
-   * Combines the values of consecutive text tokens in the given `tokens` array
-   * to a single token.
-   */
   function squashTokens(tokens) {
     var lastToken;
 

@@ -21,11 +21,7 @@ define(
 		var tableData = {
 			cameras : []
 		};
-
-		// to group similar cameras
 		var cameraTypes = {};
-
-		// convert to displayed version
 		$.each(cameraData.cameras, function (cameraIndex, camera) {
 			var thisCameraType = camera.cropFactor + ", ";
 
@@ -78,7 +74,6 @@ define(
 		console.log("cameraSpec = " + JSON.stringify(cameraSettings.cameraSpec));
 
 		if (typeof(onChangeCallback) !== "undefined") {
-			// TODO: not clean - cropFactor is within cameraSpec, but is currently needed
 			onChangeCallback(['cameraSpec', 'cropFactor']);
 		}
 	};

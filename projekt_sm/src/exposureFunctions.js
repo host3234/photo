@@ -1,9 +1,5 @@
 "use strict";
-
-// Functions for manipulating exposure settings like f-stop, shutter speed, ISO
-
 define([], function () {
-	// Returns the ISO value plus the given number of thirds of stops
 	var ISOToThirds = function (ISO) {
 		return Math.round(Math.log(ISO / 100) / Math.LN2 * 3);
 	};
@@ -57,8 +53,6 @@ define([], function () {
 	var roundShutter = function (shutter) {
 		return thirdsToShutter(shutterToThirds(shutter));
 	};
-
-	// converts general property x to range, in thirds of a stop increments
 	var xRange = function (lowerBound, upperBound, xToThirds, thirdsToX) {
 		var range = [],
 			thirds = xToThirds(lowerBound),
@@ -72,7 +66,6 @@ define([], function () {
 		return range;		
 	};
 	
-	// returns the current EV100, Exposure Value at ISO 100
 	var EV = function (ISO, aperture, shutter) {
 		return Math.log((100 * aperture * aperture) / (shutter * ISO)) / Math.LN2;
 	};
